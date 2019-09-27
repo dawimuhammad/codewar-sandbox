@@ -80,3 +80,11 @@ function incrementString (strng) {
 console.log(incrementString('foooobar002'))
 console.log(incrementString('foooobar0099'))
 console.log(incrementString('foooobar99'))
+
+/*   BEST PRACTICE   */
+
+/* function incrementString(input) {
+    return input.replace(/([0-8]?)(9*)$/, function(s, d, ns) {
+        return +d + 1 + ns.replace(/9/g, '0');
+      });
+} */
