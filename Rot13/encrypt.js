@@ -23,20 +23,32 @@
 
 /*  FIRST ATTEMPT SOLUTION   */
 
+// function rot13 (message) {
+//     //your code here
+//     let strings = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz'
+//     let arrMessage = message.split("")
+    
+//     for (let a in arrMessage) {    
+//       if ((/[a-z]/).test(arrMessage[a])) {
+//         arrMessage[a] = strings.charAt(strings.indexOf(arrMessage[a]) + 13)
+//       } else if ((/[A-Z]/).test(arrMessage[a])) {
+//         arrMessage[a] = (strings.charAt(strings.indexOf(arrMessage[a].toLowerCase()) + 13)).toUpperCase()
+//       } 
+//     }
+    
+//     return arrMessage.join("")
+// }
+
+/*   SECOND ATTEMPT SOLUTION   */
+
 function rot13 (message) {
-    //your code here
     let strings = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz'
-    let arrMessage = message.split("")
-    
-    for (let a in arrMessage) {    
-      if ((/[a-z]/).test(arrMessage[a])) {
-        arrMessage[a] = strings.charAt(strings.indexOf(arrMessage[a]) + 13)
-      } else if ((/[A-Z]/).test(arrMessage[a])) {
-        arrMessage[a] = (strings.charAt(strings.indexOf(arrMessage[a].toLowerCase()) + 13)).toUpperCase()
-      } 
-    }
-    
-    return arrMessage.join("")
+
+    return message.replace(/[a-z]/gi, (x) => { 
+        let newX = strings[strings.indexOf(x.toLowerCase()) + 13]
+
+        return ((/[A-Z]/g).test(x)) ? (newX.toUpperCase()) : (newX)
+    } ) 
 }
 
 /*   TEST CASES   */
@@ -44,3 +56,5 @@ function rot13 (message) {
 console.log("Input: Test , Expected Output: Grfg , Actual Output: ", rot13("Test"))
 
 console.log("Input: 10+2 is twelve. , Expected Output: 10+2 vf gjryir. , Actual Output: ", rot13("10+2 is twelve."))
+
+console.log("Input: p4njanG Umur P3rJuang6an , Expected Output: Grfg , Actual Output: ", rot13("p4njanG Umur P3rJuang6an"))
